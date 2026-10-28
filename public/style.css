@@ -31,3 +31,5 @@ aside{position:sticky;top:0;height:100dvh;overflow:auto;align-self:start}.local-
  .workspace>header{position:sticky;top:var(--sticky-banner-size,0px);z-index:4;background:#f5f4ee;gap:10px}
  .menu-toggle{display:inline-grid;place-items:center;width:44px;height:44px;padding:0;font-size:23px;background:#e8eddf;border-radius:12px;flex-shrink:0}.header-brand{gap:10px}.date{font-size:11px}
 }
+
+.shortcut-card ol{padding-left:22px;font-size:13px;line-height:1.9}.shortcut-card input{font-size:13px}.shortcut-card button{margin-top:12px}.shortcut-try{color:#33594e;text-decoration:underline;text-underline-offset:4px}
