@@ -1,6 +1,6 @@
 import {uid,fresh,ensurePlan,eveningKey,targetAt,elapsed,stats,schedule,validateBackup,validateRecord,median,latestStart,taskAccuracy,eveningSummary,eveningCombos,prepareCombo,noteReasons,reasonInsights,arrivalTask,arrivalEstimate,arrivalMode,restState,migrateRoutine,taskCanStart} from './core.js';
 const KEY='quiet-evening-v1';const app=document.querySelector('#app');const dialog=document.querySelector('#modal');const body=document.querySelector('#modal-body');
-const APP_VERSION='1.4.0';
+const APP_VERSION='1.4.1';
 let state,view,filter='',noticeTimer,storageFailed=false,storageMode='persistent',fullPlanOpen=false;
 try{const raw=localStorage.getItem(KEY);state=raw?validateBackup(JSON.parse(raw)):fresh()}catch(e){state=fresh();if(e.name==='SecurityError'||e.name==='NotAllowedError'){storageMode='temporary'}else{storageFailed=true;notify('本地数据无法读取。为保护原数据，已停止自动保存；请先在设置中导出或恢复有效备份。',true)}}
 function storageStatus(){const el=document.querySelector('#storage-status');el.className=storageMode==='temporary'?'storage-banner temporary':storageFailed?'storage-banner error':'storage-banner';el.textContent=storageMode==='temporary'?`临时预览 · v${APP_VERSION}：当前预览禁止本机存储。添加、计时和编辑仅在本次打开期间有效，刷新或关闭可能丢失；请在完整浏览器中打开以保存记录。`:storageFailed?`保存异常 · v${APP_VERSION}：请先导出备份，当前操作不能保存到本机。`:`v${APP_VERSION} · 数据保存在当前浏览器`}
