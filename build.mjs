@@ -7,5 +7,5 @@ const core=(await readFile('public/core.js','utf8')).replace(/\bexport /g,'');
 const app=(await readFile('public/app.js','utf8')).replace(/^import .*?;\n/,'');
 html=html.replace('<link rel="stylesheet" href="./style.css">',()=>`<style>${css}</style>`)
 .replace('<script type="module" src="./app.js"></script>',()=>`<script type="module">\n${core}\n${app}\n</script>`);
-await writeFile('dist/index.html',html);await writeFile('index.html',html);await writeFile('quiet-evening-v1.7.0.html',html);
+await writeFile('dist/index.html',html);await writeFile('index.html',html);await writeFile('quiet-evening-v1.7.1.html',html);
 const {version}=JSON.parse(await readFile('package.json','utf8'));await writeFile('dist/version.json',JSON.stringify({version})+'\n');console.log('Built dist and standalone index.html');
