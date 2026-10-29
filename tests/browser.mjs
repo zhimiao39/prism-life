@@ -1,3 +1,4 @@
+import {openInsightModule,openInsightTask} from './ui-helpers.mjs';
 import {fullPlan,navigate} from './ui-helpers.mjs';
 import {chromium} from 'playwright';
 import assert from 'node:assert/strict';
@@ -9,7 +10,7 @@ await page.goto('http://127.0.0.1:5173');await fullPlan(page);await page.locator
 await fullPlan(page);await page.getByRole('button',{name:'开始这一件'}).click();await page.getByRole('button',{name:'开始计时'}).click();await page.waitForTimeout(1200);await page.reload();await page.locator('#elapsed').waitFor();assert.notEqual(await page.locator('#elapsed').textContent(),'00:00');
 await page.getByRole('button',{name:'暂停一下'}).click();const paused=await page.locator('#elapsed').textContent();await page.reload();assert.equal(await page.locator('#elapsed').textContent(),paused);await page.getByRole('button',{name:'继续计时'}).click();
 await page.getByRole('button',{name:'完成，收拾好了'}).click();await page.getByRole('button',{name:'暂不填写'}).click();assert.equal(await page.locator('.task.done').count(),1);await page.reload();assert.equal(await page.locator('.task.done').count(),1);
-await navigate(page,'洞察');await page.locator('.record').first().waitFor();assert.equal(await page.locator('.record').count(),1);await page.getByRole('button',{name:'编辑时间 / 备注'}).click();await page.locator('[name=note]').fill('浏览器实测记录');await page.getByRole('button',{name:'保存记录'}).click();await page.locator('.record').getByText('浏览器实测记录').waitFor();
+await navigate(page,'洞察');await openInsightModule(page,'records');await page.locator('.record').first().waitFor();assert.equal(await page.locator('.record').count(),1);await page.getByRole('button',{name:'编辑时间 / 备注'}).click();await page.locator('[name=note]').fill('浏览器实测记录');await page.getByRole('button',{name:'保存记录'}).click();await page.locator('.record').getByText('浏览器实测记录').waitFor();
 await page.getByRole('button',{name:'不纳入洞察'}).click();await page.getByRole('heading',{name:'还在了解你的节奏'}).waitFor();
 await navigate(page,'设置');const downloadEvent=page.waitForEvent('download');await page.getByRole('button',{name:'导出完整备份'}).click();const download=await downloadEvent;const path=await download.path();
 await page.locator('#import').setInputFiles({name:'bad.json',mimeType:'application/json',buffer:Buffer.from('{"schemaVersion":99}')});await page.getByText(/恢复失败/).waitFor();

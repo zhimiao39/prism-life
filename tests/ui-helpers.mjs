@@ -1,3 +1,6 @@
 export async function fullPlan(ui){const button=ui.getByRole('button',{name:'直接看完整安排',exact:true});if(await button.count()&&await button.isVisible())await button.click()}
 
 export async function navigate(ui,name){const toggle=ui.getByRole('button',{name:'打开导航',exact:true});if(await toggle.count()&&await toggle.isVisible()&&await toggle.getAttribute('aria-expanded')!=='true')await toggle.click();await ui.getByRole('link',{name}).click()}
+
+export async function openInsightModule(ui,key){const details=ui.locator(`[data-module="${key}"]>.module-fold`);if(await details.count()&&!await details.evaluate(e=>e.open))await details.locator(':scope>summary').click()}
+export async function openInsightTask(ui,key,id){await openInsightModule(ui,key);const details=ui.locator(`[data-fold="${key}-${id}"]`);if(await details.count()&&!await details.evaluate(e=>e.open))await details.locator(':scope>summary').click()}
