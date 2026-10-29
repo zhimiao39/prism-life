@@ -1,6 +1,6 @@
 {
   "name": "quiet-evening",
-  "version": "1.6.0",
+  "version": "1.7.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,9 @@
     "test:arrival": "npm run build && node tests/arrival-ui.mjs",
     "test:navigation": "npm run build && node tests/navigation-overlay.mjs",
     "test:clothes": "npm run build && node tests/clothes-ui.mjs",
-    "test:arrival-link": "npm run build && node tests/arrival-link.mjs"
+    "test:arrival-link": "npm run build && node tests/arrival-link.mjs",
+    "test:updates": "npm run build && node tests/pwa-update.mjs",
+    "test:finish-chart": "npm run build && node tests/finish-chart-ui.mjs"
   },
   "engines": {
     "node": ">=20"
